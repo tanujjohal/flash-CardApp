@@ -1,0 +1,30 @@
+{
+  "name": "flashcard-application",
+  "version": "1.0.0",
+  "description": "Flash Card Application in Nodejs and Html/Css",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tanujjohal12/FlashCard-Application.git"
+  },
+  "author": "Tanuj Johal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tanujjohal12/FlashCard-Application/issues"
+  },
+  "homepage": "https://github.com/tanujjohal12/FlashCard-Application#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "hbs": "^4.1.1",
+    "mysql2": "^2.2.5",
+    "nodemon": "^2.0.7",
+    "path": "^0.12.7",
+    "sequelize": "^6.5.0",
+    "sequelize-cli": "^6.2.0"
+  }
+}
