@@ -1,0 +1,343 @@
+
+:root {
+    --primary: #FFCE00;
+    --secondary: #FE4880;
+    --dark: #212121;
+    --light: #F3F3F3;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: montserrat, sans-serif;
+    width: 100%;
+    min-height: 100vh;
+    background: url(https://www.brainpickings.org/wp-content/themes/brainpickings/images/bckgd_body.png);
+}
+
+.card {
+    margin: 25px auto 0;
+    width: 400px;
+    height: 600px;
+    perspective: 1000px;
+}
+
+.card__inner {
+    width: 100%;
+    height: 100%;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+    cursor: none;
+    position: relative;
+}
+
+.card__inner.is-flipped {
+    transform: rotateY(180deg);
+}   
+
+
+.card__face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    overflow: hidden;
+    border-radius: 16px;
+    box-shadow: 0px 3px 18px 3px rgba(0, 0, 0, 0.2);
+}
+
+.card__face--front {
+    background-image: linear-gradient(to bottom right, var(--primary), var(--secondary));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card__face--front h2 {
+    color: #FFF;
+    font-size: 32px;
+}
+
+.card__face--front {
+    background-color: var(--light);
+    transform: rotateY(180deg);
+}
+
+.card__content {
+    width: 100%;
+    height: 100%;
+}
+
+.card__header {
+    position: relative;
+    padding: 30px 30px 40px;
+}
+
+.card__header:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: linear-gradient(to bottom left, var(--primary) 10%, var(--secondary) 115%);
+    z-index: -1;
+    border-radius: 0px 0px 50% 0px;
+}
+
+.pp {
+    display: block;
+    width: 128px;
+    height: 128px;
+    margin: 0 auto 30px;
+    border-radius: 50%;
+    background-color: #FFF;
+    border: 5px solid #FFF;
+    object-fit: cover;
+}
+
+.card__header h2 {
+    color: #FFF;
+    font-size: 32px;
+    font-weight: 900;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.card__body {
+    padding: 30px;
+}
+
+.card__body h3 {
+    color: var(--dark);
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.card__body p {
+    color: var(--dark);
+    font-size: 18px;
+    line-height: 1.4;
+}
+
+/* BUTTON TOGGLE */
+
+.button__ {
+    height: 15vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+.html {
+    height: 25vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  #btn {
+    background: #222;
+    height: 50px;
+    min-width: 150px;
+    border: none;
+    border-radius: 10px;
+    color: #eee;
+    font-size: 40px;
+    font-family: sans-serif;
+    position: relative;
+    transition: 1s;
+    -webkit-tap-highlight-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding-top: 5px;
+  }
+  
+  #btn #circle {
+    width: 5px;
+    height: 5px;
+    background: transparent;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    overflow: hidden;
+    transition: 500ms;
+  }
+  
+  .noselect {
+    -webkit-touch-callout: none;
+      -webkit-user-select: none;
+       -khtml-user-select: none;
+         -moz-user-select: none;
+          -ms-user-select: none;
+              user-select: none;
+  }
+  
+  #btn:hover {
+    background: #FFCE00;
+  }
+  
+  #btn:hover #circle {
+    height: 50px;
+    width: 150px;
+    left: 0;
+    border-radius: 0;
+    border-bottom: 2px solid #eee;
+  }
+
+/* Header */
+  
+  .offset {
+    margin-top: 20px;
+    padding-top: 50px;
+    text-align: center;
+    transition: .3s;
+  }
+  
+  .header {
+    width: 100%;
+    height: 150px;
+    font-weight: bold;
+    text-align: center;
+    background: gold;
+    transition: .3s;
+  }
+  
+
+  .header_logo {
+    font-family: sans-serif;
+    margin: 0;
+    padding-top: 80px;
+    font-size: 50px;
+    text-shadow: 3px 4px rgba(black, .1);
+    transition: .3s;
+  }
+
+  /* Navigator */
+
+
+  .navigator a {
+    text-decoration: none;
+    display: inline-block;
+    padding: 8px 16px;
+    margin-left: 60px;
+    margin-right: 60px;
+
+  }
+  
+  .navigator a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  
+  .navigator .previous {
+    background-color: #f1f1f1;
+    color: black;
+  }
+  
+  .navigator .next {
+    background-color: #FE4880;
+    color: white;
+  }
+  
+  .navigator .round {
+    border-radius: 50%;
+  }
+
+  /* DropDown Box */
+
+
+  .collection {
+    margin: 20px auto;
+  }
+
+  .dropdown-container {
+    width: 250px;
+    margin: 30px auto;
+    position: relative;
+  }
+
+  select {
+    width: 100%;
+    height: 50px;
+    font-size: 100%;
+    font-family: sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 0;
+    background-color: #c0392b;
+    border: none;
+    border-bottom: 2px solid #962d22;
+    color: white;
+    appearance: none;
+    padding: 10px;
+    padding-right: 38px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    transition: color 0.3s ease, background-color 0.3s ease, border-bottom-color 0.3s ease;
+  }
+
+  /* For IE <= 11 */
+  select::-ms-expand {
+    display: none; 
+  }
+
+  .select-icon {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 30px;
+    height: 36px;
+    pointer-events: none;
+    border: 2px solid #962d22;
+    padding-left: 5px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+  .select-icon svg.icon {
+    transition: fill 0.3s ease;
+    fill: white;
+  }
+
+  select:hover,
+  select:focus {
+    color: #c0392b;
+    background-color: white;
+    border-bottom-color: #DCDCDC;
+  }
+  select:hover ~ .select-icon,
+  select:focus ~ .select-icon {
+    background-color: white;
+    border-color: #DCDCDC;
+  }
+  select:hover ~ .select-icon svg.icon,
+  select:focus ~ .select-icon svg.icon {
+    fill: #c0392b;
+  }
+
+  
+.dropdown-container .button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-family: sans-serif;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.dropdown-container .button:hover {
+    background-color: #a910d8;
+    transition: 1s;
+}
