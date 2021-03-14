@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Play Cards</title>
+    <link rel="stylesheet" href="/style/style.css" />
+  </head>
+  <body>
+    <div class="header">
+      <h1 class="header_logo">Play Cards Applications</h1>
+      <button class="logout" onclick="logout()">Logout</button>
+    </div>
+
+    <div class="offset">
+      <div class="collection">
+        <div class="dropdown-container">
+          <select id="offset-category">
+          </select>
+          <div class="select-icon">
+            <svg
+              focusable="false"
+              viewBox="0 0 104 128"
+              width="25"
+              height="35"
+              class="icon"
+            >
+              <path
+                d="m2e1 95a9 9 0 0 1 -9 9 9 9 0 0 1 -9 -9 9 9 0 0 1 9 -9 9 9 0 0 1 9 9zm0-3e1a9 9 0 0 1 -9 9 9 9 0 0 1 -9 -9 9 9 0 0 1 9 -9 9 9 0 0 1 9 9zm0-3e1a9 9 0 0 1 -9 9 9 9 0 0 1 -9 -9 9 9 0 0 1 9 -9 9 9 0 0 1 9 9zm14 55h68v1e1h-68zm0-3e1h68v1e1h-68zm0-3e1h68v1e1h-68z"
+              ></path>
+            </svg>
+          </div>
+        </div>
+        <div class="button__">
+          <div id="btn">
+            <span class="noselect">Submit</span>
+            <div id="circle"></div>
+          </div>
+        </div>
+      </div>
+      <div id="differentDiv" style="display: none;">
+        <div class="navigator">
+          <a href="#" class="previous">&laquo; Previous</a>
+          <a href="#" class="next">Next &raquo;</a>
+        </div>
+
+        <div class="card">
+          <div class="card__inner">
+            <div class="card__face card__face--front">
+              <h2 id="back-data">Card Back</h2>
+            </div>
+            <div class="card__face card__face--back">
+              <div class="card__content">
+                <div class="card__header">
+                  <img src="/img/ff.jpg" alt="" class="pp" id="card-image" />
+                  <h2 id="front-category">Tyler Potts</h2>
+                </div>
+                <div class="card__body">
+                  <h3 id="front-title">JavaScript Wizard</h3>
+                  <p id="front-data">
+                    Lorem ipsum <strong>dolor</strong> sit amet, consectetur
+                    <strong>adipiscing</strong> elit. Sed id erat a magna lobortis
+                    dictum. Nunc est arcu, <strong>lacinia</strong> quis sapien
+                    placerat, <strong>laoreet</strong> tincidunt nulla.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="html">
+          <div id="btn">
+            <span class="noselect">Back</span>
+            <div id="circle"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="modal" class="cl-modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div style="font-size: 24px">Edit</div>
+          <button class="cross" id="modal-cross-icon">
+            <img
+              src="https://img.icons8.com/material-sharp/344/multiply.png"
+              alt="Cross icon"
+              class="cross-img"
+            />
+          </button>
+        </div>
+        <div class="modal-body">
+          <div>
+            <label for="category">Category</label>
+            <select id="category" class="modal-select">
+            </select>
+          </div>
+          <div>
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title" placeholder="Title" />
+          </div>
+          <div>
+            <label for="front-content">Front Content</label>
+            <textarea id="front-content"></textarea>
+          </div>
+          <div>
+            <label for="back-content">Back Content</label>
+            <textarea id="back-content"></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="form-action" style="background: red; color: white; cursor:pointer;" onclick="deleteCard()">
+            Delete
+          </button>
+          <button class="form-action" style="background: green; color: white; cursor:pointer;" onclick="updateCard()">
+            Update
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="/js/main.js"></script>
+    <script type="text/javascript">
+      var affiliate_entries = "{{data}}";
+      affiliate_entries = affiliate_entries.replaceAll("&quot;", "\"");
+      affiliate_entries = JSON.parse(affiliate_entries)
+
+      for (var key in affiliate_entries) {
+          if (affiliate_entries.hasOwnProperty(key)) {
+              // console.log(key + " -> " + affiliate_entries[key]);
+
+              //For affiliate network data wala dropdown
+              var option = document.createElement("option");
+              option.text = key;
+              option.value = affiliate_entries[key];
+              var select = document.getElementById("offset-category");
+
+              //For affiliate entries wala dropdown in generate reports
+              var option1 = document.createElement("option");
+              option1.text = key;
+              option1.value = affiliate_entries[key];
+              var select1 = document.getElementById("category");
+
+
+              select.appendChild(option);
+              select1.appendChild(option1);
+
+          }
+      }
+
+
+
+    </script>
+  </body>
+</html>
