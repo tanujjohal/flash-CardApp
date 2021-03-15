@@ -239,6 +239,31 @@
     cursor: pointer;
   }
   
+  .add__card {
+    position: absolute;
+    right: 300px;
+    top: 50px;
+    border: 0;
+    padding: 10px 15px;
+    background: black;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .edit__collections {
+    position: absolute;
+    right: 150px;
+    top: 50px;
+    border: 0;
+    padding: 10px 15px;
+    background: black;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+
   /* Navigator */
   
   .navigator a {
