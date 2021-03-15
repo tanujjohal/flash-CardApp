@@ -20,17 +20,18 @@ router.get("/collection", (req, res) => {
 });
 
 router.post("/collection", (req, res) => {
-    const {name} = req.body;
+    let {name} = req.body;
     run().catch(error => console.log(error.stack));
     async function run() {
         try {
+            name = name.toLowerCase();
             const row = await collection.create({
                 name: name
             });
             if(row){
                 res.json({status: 1, msg: "Successfully Pushed"});
             } else{
-                res.json({status: 0, msg: "Unsuccessfully Pushed"});
+                res.json({status: 0, msg: "Unsuccessfully Pushed! It already Exist!"});
             }
         } catch (err) {
             console.log(err);

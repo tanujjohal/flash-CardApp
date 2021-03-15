@@ -44,7 +44,7 @@ button.addEventListener("click", function(e) {
 submit.addEventListener("click", function(err) {
     console.log("Submit Clicked");
     let categoryId = document.getElementById("offset-category").value;
-    let categoryName = document.getElementById("offset-category").innerText;
+    let categoryName = document.querySelector("#offset-category option[value=\""+ categoryId +"\"]").innerText;
 
     console.log(categoryName);
 
@@ -60,6 +60,10 @@ submit.addEventListener("click", function(err) {
               cardsData = response.data;
               console.log(response.data);
               if(cardsData.length != 0){
+                document.getElementById("front-category").innerText = "";
+                document.getElementById("front-data").innerText = "";
+                document.getElementById("front-title").innerText = "";
+                document.getElementById("back-data").innerText = "";
                 document.getElementById("front-category").innerText = categoryName;
                 document.getElementById("front-data").innerText = cardsData[cardNo].frontBody;
                 document.getElementById("front-title").innerText = cardsData[cardNo].title;
@@ -76,7 +80,9 @@ submit.addEventListener("click", function(err) {
 
 previous.addEventListener("click", function(err) {
   console.log("Previous Clicked");
-  let categoryName = document.getElementById("offset-category").innerText;
+  let categoryId = document.getElementById("offset-category").value;
+  let categoryName = document.querySelector("#offset-category option[value=\""+ categoryId +"\"]").innerText;
+
 
   if(cardsData.length != 0){
     cardNo = (cardNo - 1 + cardsData.length)%cardsData.length;
@@ -89,7 +95,9 @@ previous.addEventListener("click", function(err) {
 
 next.addEventListener("click", function(err) {
   console.log("Next Clicked");
-  let categoryName = document.getElementById("offset-category").innerText;
+  let categoryId = document.getElementById("offset-category").value;
+  let categoryName = document.querySelector("#offset-category option[value=\""+ categoryId +"\"]").innerText;
+
   
   if(cardsData.length != 0){
     cardNo = (cardNo + 1)%cardsData.length;
