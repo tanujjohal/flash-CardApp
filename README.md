@@ -3,9 +3,9 @@
 # STEPS TO RUN THIS PROJECT
 
 
-1. Install NPM
+1. Install Node
 
-2. The run the command >> npm install
+2. Then run the command >> npm install
 
 3. You have to create the database in your local sql space with name "flashcard"
 
