@@ -5,7 +5,9 @@ const previous = document.querySelector(".previous");
 const next = document.querySelector(".next");
 const image = document.querySelector("#card-image");
 const cross = document.querySelector('#modal-cross-icon');
+const crossModal = document.querySelector('#modalcollection-cross-icon');
 const modal = document.querySelector('#modal');
+const modalCollection = document.querySelector("#modalCollection")
 
 
 function getXMLHTTPRequest() {
@@ -105,18 +107,51 @@ image.addEventListener('click', function() {
   console.log(categoryId);
   document.getElementById('category').value = categoryId;
   document.getElementById('title').value = cardsData[cardNo].title;
-  document.getElementById('front-content').innerText = cardsData[cardNo].frontBody;
-  document.getElementById('back-content').innerText = cardsData[cardNo].backBody;  
+  document.getElementById('front-content').value = cardsData[cardNo].frontBody;
+  document.getElementById('back-content').value = cardsData[cardNo].backBody;  
+  document.getElementById('addbutton').style.display = "none";
+  document.getElementById('updatebutton').style.display = "block";
+  document.getElementById('deletebutton').style.display = "block";
+
   
   modal.setAttribute('style', "display: block;");
 });
 
 cross.addEventListener('click', function() {
+  console.log("CLICKED");
   modal.setAttribute('style', "");
+
+});
+
+crossModal.addEventListener('click', function() {
+  console.log("CLICKED");
+  modalCollection.setAttribute('style', "");
 });
 
 function deleteCard(){
   console.log("Delete");
+  let id = cardsData[cardNo].id;
+  let url = `http://localhost:8000/cards/${id}`;
+
+  if(confirm("Are you sure you want to delete this Card???")){
+    var http1 = getXMLHTTPRequest();
+    http1.open("DELETE", url , true);
+    http1.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    http1.onreadystatechange = function () {
+        if (http1.readyState == 4 && http1.status == 200) {
+            let response = http1.responseText;
+            response = JSON.parse(response);
+            if(response.status == 1){
+              alert("Deleted Done!\n" + response.msg);
+              window.location.reload();
+            } else{
+                alert("Error Occurred!\n" + response.msg);
+              }             
+          }
+      }
+    http1.send(); 
+  }
+
 }
 
 function updateCard(){
@@ -159,7 +194,7 @@ function updateCard(){
             document.getElementById('title').value = cardsData[cardNo].title;
             document.getElementById('front-content').innerText = cardsData[cardNo].frontBody;
             document.getElementById('back-content').innerText = cardsData[cardNo].backBody; 
-
+            window.location.reload();
           } else{
               alert("Error Occurred!\n" + response.msg);
             }             
@@ -185,4 +220,158 @@ function logout(){
         }
     };
     http1.send();
+}
+
+function addCard(){
+  console.log("Clicked Add card");
+  let categoryId = document.getElementById("offset-category").value;
+  document.getElementById('category').value = categoryId;
+  document.getElementById('title').value = '';
+  document.getElementById('front-content').value = '';
+  document.getElementById('back-content').value = '';  
+  document.getElementById('deletebutton').style.display = "none";
+  document.getElementById('updatebutton').style.display = "none";
+  document.getElementById('addbutton').style.display = "block";
+
+  modal.setAttribute('style', "display: block;");
+  // window.location.reload();
+
+}
+
+function submitCard(){
+  console.log("Clicked Submit Card");
+  let categoryId = document.getElementById('category').value;
+  let title = document.getElementById('title').value;
+  let frontbody = document.getElementById('front-content').value;
+  let backbody = document.getElementById('back-content').value;  
+  console.log({categoryId, title, frontbody, backbody});
+
+  let url = "http://localhost:8000/cards";
+
+  let params =
+        "id=" +
+        encodeURIComponent(categoryId) +
+        "&title=" +
+        encodeURIComponent(title) +
+        "&frontbody=" +
+        encodeURIComponent(frontbody) +
+        "&backbody=" +
+        encodeURIComponent(backbody);
+  
+  var http1 = getXMLHTTPRequest();
+  http1.open("POST", url , true);
+  http1.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  http1.onreadystatechange = function () {
+      if (http1.readyState == 4 && http1.status == 200) {
+          let response = http1.responseText;
+          response = JSON.parse(response);
+          if(response.status == 1){
+            alert("New Card is Added !\n" + response.msg);
+            window.location.reload();
+          } else{
+              alert("Error Occurred!\n" + response.msg);
+            }             
+        }
+    }
+  http1.send(params);
+
+
+
+
+}
+
+function editCollection(){
+  console.log("Clicked Edit Collections");
+
+  modalCollection.setAttribute('style', "display: block;");
+}
+
+function addCollection(){
+  console.log("Clicked Add");
+  let name = document.getElementById('name').value;
+  console.log(name);
+
+  let url = "http://localhost:8000/collection";
+
+  let params =
+        "name=" +
+        encodeURIComponent(name);
+  
+  var http1 = getXMLHTTPRequest();
+  http1.open("POST", url , true);
+  http1.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  http1.onreadystatechange = function () {
+      if (http1.readyState == 4 && http1.status == 200) {
+          let response = http1.responseText;
+          response = JSON.parse(response);
+          if(response.status == 1){
+            alert("New Collection is Added !\n" + response.msg);
+            window.location.reload();
+          } else{
+              alert("Error Occurred!\n" + response.msg);
+            }             
+        }
+    }
+  http1.send(params);
+
+}
+
+function updateCollection(){
+  console.log("Clicked Update");
+  let categoryId = document.getElementById('categorysecond').value;
+  let name = document.getElementById('new_name').value;
+  // console.log({categoryId, name});
+
+  let url = `http://localhost:8000/collection/${categoryId}/${name}`;
+
+  if(confirm("Are you sure you want to update the exsiting  collection???\n")){
+    var http1 = getXMLHTTPRequest();
+    http1.open("PUT", url , true);
+    http1.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    http1.onreadystatechange = function () {
+        if (http1.readyState == 4 && http1.status == 200) {
+            let response = http1.responseText;
+            response = JSON.parse(response);
+            if(response.status == 1){
+              alert("Changes in Collection is Added !\n" + response.msg);
+              window.location.reload();
+            } else{
+                alert("Error Occurred!\n" + response.msg);
+              }             
+          }
+      }
+    http1.send();
+  }
+
+
+
+}
+
+function deleteCollection(){
+  console.log("Clicked Delete");
+  let categoryId = document.getElementById('categorythird').value;
+  console.log({categoryId});
+
+  let url = `http://localhost:8000/collection/${categoryId}`;
+
+  if(confirm("Are you sure you want to delete the collection???\n")){
+    var http1 = getXMLHTTPRequest();
+    http1.open("DELETE", url , true);
+    http1.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    http1.onreadystatechange = function () {
+        if (http1.readyState == 4 && http1.status == 200) {
+            let response = http1.responseText;
+            response = JSON.parse(response);
+            if(response.status == 1){
+              alert("Collection is Deleted !\n" + response.msg);
+              window.location.reload();
+            } else{
+                alert("Error Occurred!\n" + response.msg);
+              }             
+          }
+      }
+    http1.send();
+  }
+
+
 }
