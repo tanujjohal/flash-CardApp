@@ -8,7 +8,10 @@
   </head>
   <body>
     <div class="header">
-      <h1 class="header_logo">Play Cards Applications</h1>
+      <h1 class="header_logo" style="float: left; padding:45px 15px;">Play Cards Applications</h1>
+      <button class="logout" onclick="logout()">Logout</button>
+      <button class="add__card" onclick="addCard()">Add Card</button>
+      <button class="edit__collections" onclick="editCollection()">Edit collection</button>
       <button class="logout" onclick="logout()">Logout</button>
     </div>
 
@@ -110,15 +113,108 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button class="form-action" style="background: red; color: white; cursor:pointer;" onclick="deleteCard()">
+          <button class="form-action" id= "deletebutton" style="background: red; color: white; cursor:pointer;" onclick="deleteCard()">
             Delete
           </button>
-          <button class="form-action" style="background: green; color: white; cursor:pointer;" onclick="updateCard()">
+          <button class="form-action" id= "addbutton" style="background: red; color: white; cursor:pointer;" onclick="submitCard()">
+            Add Card
+          </button>
+          <button class="form-action" id= "updatebutton" style="background: green; color: white; cursor:pointer;" onclick="updateCard()">
             Update
           </button>
         </div>
       </div>
     </div>
+
+
+    <div id="modalCollection" class="cl-modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div style="font-size: 24px; align:center">Edit Collections Data</div>
+          <button class="cross" id="modalcollection-cross-icon">
+            <img
+              src="https://img.icons8.com/material-sharp/344/multiply.png"
+              alt="Cross icon"
+              class="cross-img"
+            />
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="addCollection" style="padding: 20px 15px; margin-bottom:20px;">
+              <div style="text-align:center; margin-bottom:30px">
+                  <h style="font-size: 25px;">Add New Collection</h></div>
+              <div>
+              <label for="category">Name of Category: </label>
+              <input type="text" id="name" name="name" placeholder="Name" />
+              <button class="form-action" style="background: red; color: white; cursor:pointer; align:center;" onclick="addCollection()">
+                Add Collection
+              </button>
+              {{!-- <select id="category" class="modal-select"> --}}
+              {{!-- </select> --}}
+            </div>
+          </div>
+
+          <div class="updateCollection" style="padding: 20px 15px;margin-bottom:20px;">
+              <div style="text-align:center; margin-bottom:30px">
+                  <h style="font-size: 25px;">Update Exsisting Collection</h></div>
+              <div>
+              <label for="category">Select Collection: </label>
+              <select id="categorysecond" class="modal-select">
+              </select>
+              <label for="category">Updated Name of Category: </label>
+              <input type="text" id="new_name" name="name" placeholder="Name" />
+              <button class="form-action" style="background: red; color: white; cursor:pointer; align:center;" onclick="updateCollection()">
+                Update Collection
+              </button>
+              {{!-- <select id="category" class="modal-select"> --}}
+              </select>
+            </div>
+
+          </div>
+
+          <div class="updateCollection" style="padding: 20px 15px;margin-bottom:20px;">
+              <div style="text-align:center; margin-bottom:30px">
+                  <h style="font-size: 25px;">Delete Exsisting Collection</h></div>
+              <div>
+              <label for="category">Select Collection: </label>
+              <select id="categorythird" class="modal-select">
+              </select>
+              <button class="form-action" style="background: red; color: white; cursor:pointer; align:center;" onclick="deleteCollection()">
+                Delete Collection
+              </button>
+              {{!-- <select id="category" class="modal-select"> --}}
+              </select>
+            </div>
+
+          </div>
+        </div>
+          {{!-- <div>
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title" placeholder="Title" />
+          </div>
+          <div>
+            <label for="front-content">Front Content</label>
+            <textarea id="front-content"></textarea>
+          </div>
+          <div>
+            <label for="back-content">Back Content</label>
+            <textarea id="back-content"></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="form-action" id= "deletebutton" style="background: red; color: white; cursor:pointer;" onclick="deleteCard()">
+            Delete
+          </button>
+          <button class="form-action" id= "addbutton" style="background: red; color: white; cursor:pointer;" onclick="submitCard()">
+            Add Card
+          </button>
+          <button class="form-action" id= "updatebutton" style="background: green; color: white; cursor:pointer;" onclick="updateCard()">
+            Update
+          </button>
+        </div> --}}
+      </div>
+    </div>
+
 
     <script src="/js/main.js"></script>
     <script type="text/javascript">
@@ -142,9 +238,22 @@
               option1.value = affiliate_entries[key];
               var select1 = document.getElementById("category");
 
+              var option2 = document.createElement("option");
+              option2.text = key;
+              option2.value = affiliate_entries[key];
+              var select2 = document.getElementById("categorysecond");
+
+              var option3 = document.createElement("option");
+              option3.text = key;
+              option3.value = affiliate_entries[key];
+              var select3 = document.getElementById("categorythird");
+
 
               select.appendChild(option);
               select1.appendChild(option1);
+              select2.appendChild(option2);
+              select3.appendChild(option3);
+
 
           }
       }
