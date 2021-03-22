@@ -48,7 +48,7 @@ submit.addEventListener("click", function(err) {
 
     console.log(categoryName);
 
-    let url = `http://localhost:8000/cards?id=${categoryId}`;
+    let url = `https://flashcardapplication.herokuapp.com/cards?id=${categoryId}`;
     var http1 = getXMLHTTPRequest();
     http1.open("GET", url , true);
     http1.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -139,7 +139,7 @@ crossModal.addEventListener('click', function() {
 function deleteCard(){
   console.log("Delete");
   let id = cardsData[cardNo].id;
-  let url = `http://localhost:8000/cards/${id}`;
+  let url = `https://flashcardapplication.herokuapp.com/cards/${id}`;
 
   if(confirm("Are you sure you want to delete this Card???")){
     var http1 = getXMLHTTPRequest();
@@ -171,7 +171,7 @@ function updateCard(){
   let backbody = document.getElementById('back-content').value;  
   console.log({categoryId, title, frontbody, backbody});
 
-  let url = "http://localhost:8000/cards";
+  let url = "https://flashcardapplication.herokuapp.com/cards";
 
   let params =
         "id=" +
@@ -214,7 +214,7 @@ function updateCard(){
 
 function logout(){
   // console.log("Logout");
-  let url = `http://localhost:8000/logout`;
+  let url = `https://flashcardapplication.herokuapp.com/logout`;
   var http1 = getXMLHTTPRequest();
     http1.open("GET", url , true);
     http1.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -223,7 +223,7 @@ function logout(){
             let response = http1.responseText;
             response = JSON.parse(response);
             if(response.status == 1){
-                window.location.href = "http://localhost:8000/login";
+                window.location.href = "https://flashcardapplication.herokuapp.com/login";
             }
         }
     };
@@ -254,7 +254,7 @@ function submitCard(){
   let backbody = document.getElementById('back-content').value;  
   console.log({categoryId, title, frontbody, backbody});
 
-  let url = "http://localhost:8000/cards";
+  let url = "https://flashcardapplication.herokuapp.com/cards";
 
   let params =
         "id=" +
@@ -299,7 +299,7 @@ function addCollection(){
   let name = document.getElementById('name').value;
   console.log(name);
 
-  let url = "http://localhost:8000/collection";
+  let url = "https://flashcardapplication.herokuapp.com/collection";
 
   let params =
         "name=" +
@@ -330,7 +330,7 @@ function updateCollection(){
   let name = document.getElementById('new_name').value;
   // console.log({categoryId, name});
 
-  let url = `http://localhost:8000/collection/${categoryId}/${name}`;
+  let url = `https://flashcardapplication.herokuapp.com/collection/${categoryId}/${name}`;
 
   if(confirm("Are you sure you want to update the exsiting  collection???\n")){
     var http1 = getXMLHTTPRequest();
@@ -360,7 +360,7 @@ function deleteCollection(){
   let categoryId = document.getElementById('categorythird').value;
   console.log({categoryId});
 
-  let url = `http://localhost:8000/collection/${categoryId}`;
+  let url = `https://flashcardapplication.herokuapp.com/collection/${categoryId}`;
 
   if(confirm("Are you sure you want to delete the collection???\n")){
     var http1 = getXMLHTTPRequest();
