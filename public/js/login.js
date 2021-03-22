@@ -30,7 +30,7 @@ function func(){
     } else if(password == ""){
         alert("Enter Password");
     }
-    let url = `http://localhost:8000/api/v1/login?id=${userId}&password=${password}`;
+    let url = `https://flashcardapplication.herokuapp.com/api/v1/login?id=${userId}&password=${password}`;
     let params =
         "id=" +
         encodeURIComponent(userId) +
@@ -46,7 +46,7 @@ function func(){
             console.log(response);
             response = JSON.parse(response);
             if(response.status == 1){
-                window.location.href = "http://localhost:8000/index";
+                window.location.href = "https://flashcardapplication.herokuapp.com/index";
             }
         }
     };
