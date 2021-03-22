@@ -13,12 +13,13 @@ module.exports = {
             },
         },
         development: {
-            host: "127.0.0.1",
-            username: "root",
-            password: "",
+            host: "bnwlpkikvy8nbjhvs8m7-mysql.services.clever-cloud.com",
+            username: "ufsjjyuovagi2ha8",
+            password: "FKtlTSdKdfKFPQ3uAvsU",
+            port: 3306,
             pool: {
-                max: 20,
-                min: 5,
+                max: 5,
+                min: 1,
             },
         },
     }
